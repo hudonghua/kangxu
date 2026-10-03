@@ -1,0 +1,28 @@
+{
+  "target": "FLASH / LPC1764 / KXCAN_GLGJT312E_L3X",
+  "build": "Incremental ARM Compiler 5.06 build, 22 object dependencies checked, linked successfully",
+  "behavior": {
+    "startup_background_packets": 8,
+    "interval_ms": 200,
+    "wait_after_last_packet_ms": 200
+  },
+  "bin": {
+    "file": "FSJ_666_LCD_8x_200ms_debug.bin",
+    "bytes": 38388,
+    "sha256": "c79f07232a9971e27d31e766791a377e185178f54eda0800b092cf13f1d5fe39",
+    "application_vector_address": "0x2000",
+    "initial_sp": "0x2007cf90",
+    "reset_handler": "0x21b5",
+    "crp_word_at_0x2fc": "0xffffffff"
+  },
+  "checks": [
+    "BIN equals all AXF load segments including CRP area",
+    "Application vectors verified",
+    "Final BIN startup counter and LCD wait reset/return verified"
+  ],
+  "changed_source_sha256": {
+    "Src/main.c": "70eb0c804f8ce5889170e4207b2b93e6ac2fda1cca1fb50504880fa616506d83",
+    "Src/App_lcd.c": "69ac6f7411b0ffe92b2848a4f4e1e3fac2756b389fed87578c389191c9bd9c9d"
+  },
+  "hardware_verified": false
+}
