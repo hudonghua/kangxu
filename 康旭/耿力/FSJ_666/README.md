@@ -1,6 +1,8 @@
 # 耿力 FSJ_666
 
-2026-10-03 调试版本。
+2026-10-04 调试版本。
+
+最新 2026-10-04：已恢复臂位标题、四行距离文字、数值和 mm 单位的绘制，保留 8 次背景和最后 200ms 等待。
 
 ## 本次修改
 
@@ -13,14 +15,14 @@
 - Keil 工程：`HDH_YKQ_SPJ.uvprojx`，目标 `FLASH`，MCU `LPC1764`。
 - 当前机型：`User/_Device_config.h` 中的 `KXCAN_GLGJT312E_L3X`。
 - 原有 C/H 文件保持 GBK 编码和 CRLF 换行。
-- 调试固件：`out/FSJ_666_LCD_8x_200ms_debug.bin`，38,388 字节。
-- 构建核对记录：`out/FSJ_666_LCD_8x_200ms_debug.verification.json`。
+- 调试固件：`out/FSJ_666_LCD_8x_200ms_text_fix_debug.bin`，39,044 字节。
+- 构建核对记录：`out/FSJ_666_LCD_8x_200ms_text_fix_debug.verification.json`。
 - 文件校验清单：`manifest.json`。
 
 BIN SHA-256：
 
 ```text
-c79f07232a9971e27d31e766791a377e185178f54eda0800b092cf13f1d5fe39
+466b7eba044e8d1db8168390cf6c91e1a527f6f28d6cd860d75bc76f4dd0acf3
 ```
 
 BIN 沿用本工程原有的从 0 地址补齐导出方式，应用向量表位于 `0x2000`。下载或烧录时沿用本工程已有流程。
@@ -33,4 +35,6 @@ BIN 沿用本工程原有的从 0 地址补齐导出方式，应用向量表位�
 
 ## 给同事下载
 
-同级目录的 `FSJ_666_20261003_8bg_200ms.7z` 含本工程源码和同一份调试 BIN，可用 7-Zip 解压。密码由负责人单独提供。
+FSJ_666_20261003_8bg_200ms.7z 是 2026-10-03 旧版，未包含本次文字修复。请下载仓库当前源码或新 BIN。
+
+2026-10-04 修复：User/KXCAN_GLGJT312E.c 的 MainLogic() 重新调用 display()（一行）。针对性检查已通过左/中/右臂的文字、数值、单位、后续刷新，以及 8 次背景和 200ms 等待检查。最终 BIN 已确认包含绘制调用与 GBK 文字。实机效果待验证。

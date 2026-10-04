@@ -1,0 +1,29 @@
+{
+  "target": "FLASH",
+  "cpu": "LPC1764 / Cortex-M3",
+  "compiler": "ARMCC5 incremental",
+  "bin": "FSJ_666_LCD_8x_200ms_text_fix_debug.bin",
+  "bytes": 39044,
+  "sha256": "466b7eba044e8d1db8168390cf6c91e1a527f6f28d6cd860d75bc76f4dd0acf3",
+  "app_base": "0x2000",
+  "msp": "0x2007cf90",
+  "reset": "0x21b5",
+  "matches_axf_load_segments": true,
+  "MainLogic_disassembly": [
+    "0x66e0 push {r4, lr}",
+    "0x66e2 bl #0x7c00",
+    "0x66e6 pop.w {r4, lr}",
+    "0x66ea b.w #0x8180"
+  ],
+  "restored_display": true,
+  "background_repeats": 8,
+  "post_background_delay_ms": 200,
+  "source_sha256": {
+    "Src/main.c": "70eb0c804f8ce5889170e4207b2b93e6ac2fda1cca1fb50504880fa616506d83",
+    "Src/App_lcd.c": "69ac6f7411b0ffe92b2848a4f4e1e3fac2756b389fed87578c389191c9bd9c9d",
+    "User/KXCAN_GLGJT312E.c": "8d32c1e5d689861d2adaaa73438e5e9d25a51fafa0b76fd63db65d5c6bec2a6f"
+  },
+  "focused_host_check": "PASS: three arm titles, 12 distance labels, values, mm units, repeated refresh, 8 backgrounds and full 200 ms delay",
+  "previous_source_host_check": "FAIL: text not rendered",
+  "hardware_verified": false
+}

@@ -315,7 +315,7 @@ void selfDisplay(void)
 // Ö÷ÒªÂß¼­
 void MainLogic(void)
 {
-	// display();
+	display();
 	selfDisplay();
 }
 

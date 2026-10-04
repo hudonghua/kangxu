@@ -1,6 +1,6 @@
 {
   "layout": "康旭/耿力/FSJ_666",
-  "date": "2026-10-03",
+  "date": "2026-10-04",
   "source_encoding": "GBK / CRLF",
   "included_source_files": 67,
   "files": {
@@ -25,7 +25,10 @@
     "keilkill.bat": "6760084c939ccd5e8ff87cbbbad7495dbd365ef7f24c31ceb65e6a2a90664845",
     "out/FSJ_666_LCD_8x_200ms_debug.bin": "c79f07232a9971e27d31e766791a377e185178f54eda0800b092cf13f1d5fe39",
     "out/FSJ_666_LCD_8x_200ms_debug.verification.json": "1fde91c24a9144fe2822baa351d993febff8dbd9fa4ddd7624574173ff7dd6c4",
+    "out/FSJ_666_LCD_8x_200ms_text_fix_debug.bin": "466b7eba044e8d1db8168390cf6c91e1a527f6f28d6cd860d75bc76f4dd0acf3",
+    "out/FSJ_666_LCD_8x_200ms_text_fix_debug.verification.json": "315bc34f610c82299c44f0f037df7669ea11fc2837b863fd14262ff75d8c220a",
     "out/rename.bat": "4dbe6cbdcfd825e65dcfcdea74e584c7d51e149bef4829f16bf402ad526b284c",
+    "README.md": "7e2c7fe90532a9fd837bf776c985c991af2d92c7fafc094aa74151acd68daa18",
     "RTE_Components.h": "b20351ff5db79d5906d8493948b12efcb721f14c5380f32460ac69738aa7293a",
     "Src/adc.c": "ea4be47e7788f6f3cd58d9c5a67955f4307c79add86949fc77a735fdec5024bc",
     "Src/adc.h": "0cd948434673aa1de0ad65feefb0c06ace86f209cf46207b47e18b5ef1df7f03",
@@ -69,11 +72,12 @@
     "Src/wl.c": "fd58fdca218d34c57f5363d344a9b4f3b1dfe6bc0a914d8d217bdbbb205cd9fa",
     "Src/wl.h": "e26ed45f7ce55b9fe7d7f13ae4707a386bc4dbba9fddc17993e3f4144f76fca9",
     "User/_Device_config.h": "3576ba3f5a35525302aa7ae497da8a898155b32d1f53b60a457b2a94676d7812",
-    "User/KXCAN_GLGJT312E.c": "b4ceff8cc5dab12e92d903f9ee6a74a1ca89b361c2ba00d139cc76be5ca8c861",
+    "User/KXCAN_GLGJT312E.c": "8d32c1e5d689861d2adaaa73438e5e9d25a51fafa0b76fd63db65d5c6bec2a6f",
     "User/KXCAN_GLGJT312E.h": "d0f8cc88adf8734976b81c1503979fed46a073b357032f0be0f772a66798a13a",
     "User/KXCAN_GLZYTC.c": "d6c2e374b0a9a7cc04a50a2d05df935f43e140030dde9e968a97bc5c461983c3",
-    "User/KXCAN_GLZYTC.h": "9e3bc3de6e3c3e85d8eced653848d2e92f72880401c6e5563f36c28c2201f0f9",
-    "README.md": "63f5a64a8cf46ded7f53e148f6348292693c813f54a1688d1a1b0654961cc0e0"
+    "User/KXCAN_GLZYTC.h": "9e3bc3de6e3c3e85d8eced653848d2e92f72880401c6e5563f36c28c2201f0f9"
   },
-  "hardware_verified": false
+  "hardware_verified": false,
+  "latest_debug_bin": "out/FSJ_666_LCD_8x_200ms_text_fix_debug.bin",
+  "latest_debug_bin_sha256": "466b7eba044e8d1db8168390cf6c91e1a527f6f28d6cd860d75bc76f4dd0acf3"
 }
