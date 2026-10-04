@@ -1,40 +1,39 @@
 # 耿力 FSJ_666
 
-2026-10-04 调试版本。
+2026-10-04 调试版。正常开机发送8次主界面背景PIC31，最后一包后重新计时，等待200ms再绘制文字。恢复标题、四行距离和mm单位；左/中/右臂选择读取本地扫描状态，避免无线安全处理清零发送变量导致界面误显示中臂。
 
-最新 2026-10-04：已恢复臂位标题、四行距离文字、数值和 mm 单位的绘制，保留 8 次背景和最后 200ms 等待。
+## 工程与改动
 
-## 本次修改
+- Keil工程：HDH_YKQ_SPJ.uvprojx；FLASH目标；LPC1764；ARM Compiler 5.06。
+- 机型：USER_TYPE=KXCAN_GLGJT312E_L3X。
+- C/H维持GBK编码、CRLF换行。
+- 修改仅涉及Src/main.c、Src/App_lcd.c、User/KXCAN_GLGJT312E.c；输入扫描、无线安全处理、CAN控制和参数没有修改。
+- [完整框架与问题复核](FRAMEWORK_REVIEW_20261004.md)列明入口、初始化、定时器、任务顺序、共享状态、界面/通信/安全退出及其他原有隐患。
 
-欢迎界面结束后，主界面背景图发送 8 次，发送间隔约 200ms；最后一包背景发送后重新开始显示计时，等待 200ms，再绘制文字和图标。等待通过现有显示节拍完成，主循环继续运行。
+## 最新 BIN
 
-改动位置：`Src/main.c` 的启动刷新计数，以及 `Src/App_lcd.c` 的主界面背景结束阶段。
+- [FSJ_666_LCD_8x_200ms_arm_fix_debug.bin](out/FSJ_666_LCD_8x_200ms_arm_fix_debug.bin)，39,044字节。
+- [编译及最终核对记录](out/FSJ_666_LCD_8x_200ms_arm_fix_debug.verification.json)。
+- [文件校验清单](manifest.json)。
 
-## 工程与文件
+SHA-256：
 
-- Keil 工程：`HDH_YKQ_SPJ.uvprojx`，目标 `FLASH`，MCU `LPC1764`。
-- 当前机型：`User/_Device_config.h` 中的 `KXCAN_GLGJT312E_L3X`。
-- 原有 C/H 文件保持 GBK 编码和 CRLF 换行。
-- 调试固件：`out/FSJ_666_LCD_8x_200ms_text_fix_debug.bin`，39,044 字节。
-- 构建核对记录：`out/FSJ_666_LCD_8x_200ms_text_fix_debug.verification.json`。
-- 文件校验清单：`manifest.json`。
+~~~text
+dc3cc55ed943d3af5f4f3e9cf4c819b2f08186aebdade4391f7af1c830bd77a7
+~~~
 
-BIN SHA-256：
+BIN沿用从0地址补齐的导出方式，应用向量在0x2000。烧录沿用本工程既有流程。
 
-```text
-466b7eba044e8d1db8168390cf6c91e1a527f6f28d6cd860d75bc76f4dd0acf3
-```
+## 验证范围
 
-BIN 沿用本工程原有的从 0 地址补齐导出方式，应用向量表位于 `0x2000`。下载或烧录时沿用本工程已有流程。
+真实GPIO扫描表、DI_Scan、Activar、TIMER0_IRQHandler、主循环无线先于LCD的分支、WL_Recv、YKQ_Data_WL、主界面与文字绘制均参与针对性主机检查。覆盖3臂×使能/未使能/急停、各组持续切换6次、距离文字/数值/mm、8包背景与最后200个1ms节拍、背光开启延时、安全包字段。修复前同一检查能复现左臂被显示成中臂；修复后通过。
 
-## 验证情况
+ARMCC增量编译及FLASH链接成功。最终BIN与AXF加载段逐字节一致，向量/入口/GBK文字核对，并确认显示代码读取原始扫描变量。
 
-已完成受影响文件的 ARM Compiler 5.06 编译、现有对象文件依赖检查、FLASH 目标链接、BIN 与 AXF 加载段逐字节核对，以及最终 BIN 的启动次数和等待逻辑核对。
+GPIO/计时器寄存器、绘制及物理串口回调为模拟，未运行整机所有菜单/电源路径。实机开机重叠、切换、急停/唤醒和实际串口时序尚未验证。
 
-本版本尚未在目标设备上验证屏幕重叠是否消除。
+## 下载和协作
 
-## 给同事下载
+本仓库已公开，可直接下载。编辑提交需要写权限或Pull Request。
 
-FSJ_666_20261003_8bg_200ms.7z 是 2026-10-03 旧版，未包含本次文字修复。请下载仓库当前源码或新 BIN。
-
-2026-10-04 修复：User/KXCAN_GLGJT312E.c 的 MainLogic() 重新调用 display()（一行）。针对性检查已通过左/中/右臂的文字、数值、单位、后续刷新，以及 8 次背景和 200ms 等待检查。最终 BIN 已确认包含绘制调用与 GBK 文字。实机效果待验证。
+旧加密包FSJ_666_20261003_8bg_200ms.7z及此前debug/text_fix BIN均未包含本次臂切换修正，没有重新打包；请取最新BIN或当前源码。

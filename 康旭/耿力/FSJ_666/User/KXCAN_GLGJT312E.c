@@ -237,9 +237,10 @@ void display()
 {
 	// ±ÛÑ¡Ôñ: °´GJT312EÐ­Òé ×ó±Û=0x18A[0].6 ÓÒ±Û=0x18A[0].7 ½Ô0=ÖÐ±Û
 	uint8_t flag = 0;
-	if(_BitV(gDIBitV, 6)) // ×ó±Û
+	uint32_t vDI = gDIBitV0; // Read scanned DI before safety transmission clears outgoing DI.
+	if(_BitV(vDI, 6)) // ×ó±Û
 		flag = 0;
-	else if(_BitV(gDIBitV, 7)) // ÓÒ±Û
+	else if(_BitV(vDI, 7)) // ÓÒ±Û
 		flag = 2;
 	else // ÖÐ±Û
 		flag = 1;
